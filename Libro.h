@@ -7,6 +7,33 @@
 using namespace std;
 
 class Libro{
+private:
+    string titulo;
+    string categoria;
+    bool disponible;
+public:
+    const string &getTitulo() const {
+        return titulo;
+    }
 
+    void setTitulo(const string &titulo) {
+        Libro::titulo = titulo;
+    }
+
+    const string &getCategoria() const {
+        return categoria;
+    }
+
+    void setCategoria(const string &categoria) {
+        Libro::categoria = categoria;
+    }
+
+    bool isDisponible() const {
+        return disponible;
+    }
+
+    void setDisponible(bool disponible) {
+        Libro::disponible = disponible;
+    }
 };
 #endif //GRUPO3_ACT1_LIBRO_H
