@@ -13,7 +13,7 @@ private:
     bool disponible;
 public:
     /**
-     * Metodo get de titulo
+     * Metodo que te devuelve el titulo
      * @return te devuelve el titulo
      */
     const string &getTitulo() const {
@@ -27,7 +27,7 @@ public:
         Libro::titulo = titulo;
     }
     /**
-     * Metodo get de categoria
+     * Metodo que te devuelve de categoria
      * @return te devuelve la categoria
      */
     const string &getCategoria() const {
@@ -42,13 +42,15 @@ public:
     }
     /**
      * Metodo que te dice si el libro está disponible
-     * @return te dice si esta disponible
+     * @return te devuelve un boolean que si esta disponible
+     * es true, en caso contrario es false
      */
     bool isDisponible() const {
         return disponible;
     }
     /**
      * Metodo que cambia el estado de disponible
+     * de true a false o viceversa
      * @param disponible
      */
     void setDisponible(bool disponible) {
