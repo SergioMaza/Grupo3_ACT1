@@ -6,12 +6,18 @@
 #define GRUPO3_ACT1_LIBRO_H
 using namespace std;
 
-class Libro{
+class Libro {
 private:
     string titulo;
     string categoria;
     bool disponible;
 public:
+    Libro(){}
+    Libro(string titulo, string categoria, bool disponible) {
+        Libro::titulo = titulo;
+        Libro::categoria = categoria;
+        Libro::disponible = disponible;
+    }
     const string &getTitulo() const {
         return titulo;
     }
@@ -36,4 +42,5 @@ public:
         Libro::disponible = disponible;
     }
 };
+
 #endif //GRUPO3_ACT1_LIBRO_H
