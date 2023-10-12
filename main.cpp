@@ -90,26 +90,26 @@ Libro buscarLibroPorTitulo(Libro todosLosLibros[]) {
 
 int main() {
     Libro pokedex("Pokedex", "Educativo", true);
-    Libro orgulloyPrejuicio("Orgullo y prejuicio", "Romance", true);
-    Libro elGranLibroDelDibujo("El gran libro del dibujo", "Educativo", true);
-    Libro enciclopediaDeInformatica("Enciclopedia de informatica 1980", "Educativo", true);
-    Libro harryPotter("H.P y la piedra filosofal", "Fantasia", true);
+    Libro orgulloyPrejuicio("OrgulloYPrejuicio", "Romance", true);
+    Libro elGranLibroDelDibujo("ElGranLibroDelDibujo", "Educativo", true);
+    Libro enciclopediaDeInformatica("EnciclopediaDeInformatica1980", "Educativo", true);
+    Libro harryPotter("H.PYLaPiedraFilosofal", "Fantasia", true);
     Libro marinaDeCarlosRuizZafon("Marina", "Novela Negra, Misterio", true);
     Libro mundoDisco("Eric", "Fantasia", true);
-    Libro laIslaDelTesoro("La isla del tesoro", "Fantasia", true);
-    Libro cronicasDeLaTorre("Cronicas de la torre", "Fantasia", true);
-    Libro nada("Nada", "Novela existencialista", true);
-    Libro momentosDeLaCiencia("Momentos De La Ciencia", "Educativo", true);
-    Libro anaFrank("El diario de Ana Frank", "Autobiografia", true);
+    Libro laIslaDelTesoro("LaIslaDelTesoro", "Fantasia", true);
+    Libro cronicasDeLaTorre("CronicasDeLaTorre", "Fantasia", true);
+    Libro nada("Nada", "NovelaExistencialista", true);
+    Libro momentosDeLaCiencia("MomentosDeLaCiencia", "Educativo", true);
+    Libro anaFrank("ElDiarioDeAnaFrank", "Autobiografia", true);
     Libro frankenstein("Frankenstein", "Ciencia Ficcion", true);
-    Libro elJuegoDeEnder("El juego de Ender", "Ciencia Ficcion, Fantasia", true);
-    Libro cazadoresDeSombras("Cazadores de sombras", "Romance, Fantasia", true);
-    Libro losSuperHijos("Los Superhijos (coleccion)", "comic", true);
-    Libro diccionarioDeGallego("Diccionario de la lengua gallega", "Educativo", true);
-    Libro sinNoticiasDeGurb("Sin noticias de Gurb", "Novela Satirica, Ciencia Ficcion", true);
-    Libro robotsEImperio("Robots e Imperio", "Ciencia Ficcion, Misterio, Fantasia", true);
-    Libro sherlockHolmes("Sherlock Holmes", "Misterio", true);
-    Libro sherlockLupinyYo("Sherlock, Lupin y Yo", "Misterio, Aventura, Drama", true);
+    Libro elJuegoDeEnder("ElJuegoDeEnder", "Ciencia Ficcion, Fantasia", true);
+    Libro cazadoresDeSombras("CazadoresDeSombras", "Romance, Fantasia", true);
+    Libro losSuperHijos("LosSuperhijosColeccion", "comic", true);
+    Libro diccionarioDeGallego("DiccionarioDeLaLenguaGallega", "Educativo", true);
+    Libro sinNoticiasDeGurb("SinNoticiasDeGurb", "Novela Satirica, Ciencia Ficcion", true);
+    Libro robotsEImperio("RobotsEImperio", "Ciencia Ficcion, Misterio, Fantasia", true);
+    Libro sherlockHolmes("SherlockHolmes", "Misterio", true);
+    Libro sherlockLupinyYo("SherlockLupinYYo", "Misterio, Aventura, Drama", true);
     Libro todosLosLibros[] = {
             pokedex, orgulloyPrejuicio, elGranLibroDelDibujo, enciclopediaDeInformatica,
             harryPotter, marinaDeCarlosRuizZafon, mundoDisco, laIslaDelTesoro, cronicasDeLaTorre,
@@ -120,7 +120,7 @@ int main() {
 
     // MENU POR CONSOLA
     bool seguirMenu1 = true, seguirMenu2 = true; // Variables para controlar los bucles
-    int opcion, usuario;
+    char opcion, usuario;
     Usuario usuarioSeleccionado; // Usuario que se esta gestionando
     Libro libroSeleccionado; // Libro que se esta usando (darlo, eliminarlo, etc)
     Usuario vidhi = Usuario("Vidhi", "Sharma", "1");
@@ -135,64 +135,70 @@ int main() {
     while (seguirMenu1) {
         cout << "1. Gestionar a Vidhi\n2. Gestionar a Lucia\n3. Gestionar a Victor"
                 "\n4. Gestionar a Sergio\n5. Ver los libros disponibles\n6. Salir\n";
-        cout << "Elige una opcion:";
+        cout << "Elige una opcion (Un solo numero):";
         cin >> usuario;
         cout << "--------------------" << endl;
         switch (usuario) {
-            case 1:
+            case '1':
                 usuarioSeleccionado = vidhi;
+                seguirMenu2 = true;
                 break;
-            case 2:
+            case '2':
                 usuarioSeleccionado = lucia;
+                seguirMenu2 = true;
                 break;
-            case 3:
+            case '3':
                 usuarioSeleccionado = victor;
+                seguirMenu2 = true;
                 break;
-            case 4:
+            case '4':
                 usuarioSeleccionado = sergio;
+                seguirMenu2 = true;
                 break;
-            case 5:
+            case '5':
                 librosDisp(todosLosLibros);
+                seguirMenu2 = false;
                 break;
-            case 6:
+            case '6':
                 seguirMenu1 = false;
+                seguirMenu2 = false;
                 break;
             default:
                 cout << "Has introducido un numero incorrecto" << endl;
         }
 
-        if (usuario >= 1 && usuario <= 4) { // Solo se ejecuta si ha seleccionado un usuario para gesitonar
-            cout << "Estas gestionando a " << usuarioSeleccionado.toString() << endl;
+
+
 
             while (seguirMenu2) {
+                cout << "Estas gestionando a " << usuarioSeleccionado.toString() << endl;
                 cout << "--------------------" << endl;
                 cout << "1. Ver el historial de " << usuarioSeleccionado.getNombre() <<
                      "\n2. Dar un libro a " << usuarioSeleccionado.getNombre() <<
                      "\n3. Retirar el libro a " << usuarioSeleccionado.getNombre() <<
                      "\n4. Ver si " << usuarioSeleccionado.getNombre() << " tiene un libro\n5. Atras" << endl;
-                cout << "Escribe el numero de la accion que quieras realizar:";
+                cout << "Escribe el numero de la accion que quieras realizar (Un solo numero):";
                 cin >> opcion;
                 cout << "--------------------" << endl;
-
                 switch (opcion) {
-                    case 1:
+                    case '1':
                         // Opción 1: Ver el historial de un Usuario
                         cout << usuarioSeleccionado.historialLibros() << endl;
                         break;
 
-                    case 2:
+                    case '2':
                         // Opción 2: Dar un libro a un Usuario
                         libroSeleccionado = buscarLibroPorTitulo(todosLosLibros);
                         darLibro(usuarioSeleccionado, libroSeleccionado, todosLosLibros);
                         break;
 
-                    case 3:
+                    case '3':
                         // Opción 3: Retirar el libro a un Usuario
                         libroSeleccionado = buscarLibroPorTitulo(todosLosLibros);
                         retirarLibro(usuarioSeleccionado, libroSeleccionado, todosLosLibros);
                         break;
 
-                    case 4:
+                    case '4':
                         // Opción 4: Ver si un usuario tiene un libro
                         libroSeleccionado = buscarLibroPorTitulo(todosLosLibros);
                         if (tieneLibro(usuarioSeleccionado, libroSeleccionado)) {
@@ -204,18 +210,18 @@ int main() {
                         }
                         break;
 
-                    case 5:
+                    case '5':
                         // Opción 5: Ir al menu1
                         seguirMenu2 = false;
+                        usuario = 0;
                         break;
 
                     default:
-                        cout << "Opción no válida" << endl;
-                        break;
+                        cout << "Opcion no valida" << endl;
                 }
             }
 
-        }
+
     }
     return 0;
 }
