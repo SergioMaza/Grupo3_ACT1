@@ -91,6 +91,13 @@ public:
         string disponibleStr = disponible ? "true" : "false";
         return "[TITULO: " + titulo + "][CATEGORIA: " + categoria + "]";
     };
+
+    bool equals(Libro libro){
+        if(Libro::titulo == libro.getTitulo() && Libro::categoria == libro.getCategoria()){
+            return true;
+        }
+        return false;
+    }
 };
 
 #endif //GRUPO3_ACT1_LIBRO_H

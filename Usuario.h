@@ -75,7 +75,7 @@ public:
      * Metodo que devuelve el libroActual
      * @return libroActual del usuario
      */
-    const Libro &getLibroActual() const {
+    Libro getLibroActual() {
         return libroActual;
     }
 
@@ -83,10 +83,10 @@ public:
      * Metodo que establece el libroActual
      * @param libroActual
      */
-    void setLibroActual(const Libro &libroActual) {
+    void setLibroActual(Libro& libroActual) { // Con el & pides la referencia, para evitar una copia del objeto
         Usuario::libroActual.setDisponible(true); // Establece el anterior libroActual a disponible
+        libroActual.setDisponible(false); // Establece el nuevo libro a no disponible
         Usuario::libroActual = libroActual; // Guarda en Usuario el nuevo libroActual
-        Usuario::libroActual.setDisponible(false); // Establece el nuevo libroActual a no disponible
         Usuario::historialLibro.push_back(Usuario::libroActual); // Agrega el libro al historial
     }
     /**
