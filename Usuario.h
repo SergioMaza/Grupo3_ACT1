@@ -33,21 +33,6 @@ public:
     }
 
     /**
-     * Contructor de usuario con libroActual
-     * @param nombre Nombre del usuario
-     * @param apellido Apellido del usuario
-     * @param dni Dni del usuario
-     * @param libroActual libroActual del usuario
-     */
-    Usuario(string nombre, string apellido, string dni, Libro libroActual) {
-        Usuario::nombre = nombre;
-        Usuario::apellido = apellido;
-        Usuario::dni = dni;
-        Usuario::libroActual = libroActual;
-        Usuario::historialLibro.push_back(libroActual); // Agrega el libro al historial
-    }
-
-    /**
      * Metodo que devuelve el nombre
      * @return nombre del usuario
      */
@@ -75,7 +60,7 @@ public:
      * Metodo que devuelve el libroActual
      * @return libroActual del usuario
      */
-    Libro getLibroActual() {
+    const Libro &getLibroActual() const {
         return libroActual;
     }
 
@@ -87,7 +72,9 @@ public:
         Usuario::libroActual.setDisponible(true); // Establece el anterior libroActual a disponible
         libroActual.setDisponible(false); // Establece el nuevo libro a no disponible
         Usuario::libroActual = libroActual; // Guarda en Usuario el nuevo libroActual
+        Usuario::libroActual.setDisponible(false); // Establece el nuevo libroActual a no disponible
         Usuario::historialLibro.push_back(Usuario::libroActual); // Agrega el libro al historial
+
     }
     /**
      * Metodo que imprime el historial de libros
@@ -104,7 +91,7 @@ public:
      * @return toString de Usuario
      */
     string toString() {
-        return "[NOMBRE: " + nombre + "][APPELLIDO: " + apellido + "][LIBRO ACTUAL: " + libroActual.getTitulo() + "]";
+        return "[NOMBRE: " + Usuario::nombre + "][APPELLIDO: " + Usuario::apellido + "][LIBRO ACTUAL: " + libroActual.getTitulo() + "]";
     }
 };
 
