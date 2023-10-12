@@ -76,14 +76,14 @@ bool tieneLibro(Usuario u, Libro l) {
  * Metodo que busca un libro a partir de su titulo
  * @return Libro que esta buscando el usuario
  */
-Libro buscarLibroPorTitulo(Libro todosLosLibros[]){
+Libro buscarLibroPorTitulo(Libro todosLosLibros[]) {
     string titulo;
     cout << "Escribe el titulo del libro:";
     cin >> titulo;
     for (int i = 0; i <= 20; i++) {
-       if(todosLosLibros[i].getTitulo() == titulo){
-           return todosLosLibros[i];
-       }
+        if (todosLosLibros[i].getTitulo() == titulo) {
+            return todosLosLibros[i];
+        }
     }
     return Libro();
 }
@@ -164,12 +164,12 @@ int main() {
         if (usuario >= 1 && usuario <= 4) { // Solo se ejecuta si ha seleccionado un usuario para gesitonar
             cout << "Estas gestionando a " << usuarioSeleccionado.toString() << endl;
 
-            while(seguirMenu2){
+            while (seguirMenu2) {
                 cout << "--------------------" << endl;
                 cout << "1. Ver el historial de " << usuarioSeleccionado.getNombre() <<
-                     "\n2. Dar un libro a "<< usuarioSeleccionado.getNombre() <<
-                     "\n3. Retirar el libro a "<< usuarioSeleccionado.getNombre() <<
-                     "\n4. Ver si "<< usuarioSeleccionado.getNombre() <<" tiene un libro\n5. Atras" << endl;
+                     "\n2. Dar un libro a " << usuarioSeleccionado.getNombre() <<
+                     "\n3. Retirar el libro a " << usuarioSeleccionado.getNombre() <<
+                     "\n4. Ver si " << usuarioSeleccionado.getNombre() << " tiene un libro\n5. Atras" << endl;
                 cout << "Escribe el numero de la accion que quieras realizar:";
                 cin >> opcion;
                 cout << "--------------------" << endl;
@@ -195,10 +195,12 @@ int main() {
                     case 4:
                         // Opción 4: Ver si un usuario tiene un libro
                         libroSeleccionado = buscarLibroPorTitulo(todosLosLibros);
-                        if(tieneLibro(usuarioSeleccionado, libroSeleccionado)){
-                            cout << usuarioSeleccionado.getNombre() << " si tiene " << libroSeleccionado.getTitulo() + "\n";
-                        }else{
-                            cout << usuarioSeleccionado.getNombre() << " no tiene " << libroSeleccionado.getTitulo() + "\n";
+                        if (tieneLibro(usuarioSeleccionado, libroSeleccionado)) {
+                            cout << usuarioSeleccionado.getNombre() << " si tiene "
+                                 << libroSeleccionado.getTitulo() + "\n";
+                        } else {
+                            cout << usuarioSeleccionado.getNombre() << " no tiene "
+                                 << libroSeleccionado.getTitulo() + "\n";
                         }
                         break;
 
@@ -208,7 +210,7 @@ int main() {
                         break;
 
                     default:
-                        cout << "Opción no válida. Por favor, elige una opción válida del 1 al 8." << endl;
+                        cout << "Opción no válida" << endl;
                         break;
                 }
             }
