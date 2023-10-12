@@ -20,6 +20,15 @@ private:
 
 public:
     /**
+     * Constructor vacio de Usuario
+     */
+    Usuario(){
+        Usuario::nombre = "";
+        Usuario::apellido = "";
+        Usuario::dni = "";
+        Usuario::libroActual = Libro();
+    }
+    /**
      * Constructor de usuario sin libroActual
      * @param nombre Nombre del usuario
      * @param apellido Apellido del usuario
@@ -79,12 +88,15 @@ public:
     /**
      * Metodo que imprime el historial de libros
      */
-    void historialLibros() {
-        cout << "--------------------" << endl;
+    string historialLibros() {
+        string historialLibrosStr;
         for (Libro libro: historialLibro) {
-            cout << "- " << libro.toStringSinDisponible() << endl;
+            historialLibrosStr += "- " + libro.toStringSinDisponible() + "\n";
         }
-        cout << "--------------------" << endl;
+        if(historialLibrosStr == ""){
+            return "Vacio";
+        }
+        return historialLibrosStr;
     }
     /**
      * Metodo toString

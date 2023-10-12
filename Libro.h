@@ -14,7 +14,6 @@ private:
     string titulo;
     string categoria;
     bool disponible;
-
 public:
     /**
      * Constructor vacio
@@ -43,25 +42,11 @@ public:
         return titulo;
     }
     /**
-     * Metodo que cambia el titulo
-     * @param titulo
-     */
-    void setTitulo(string titulo) {
-        Libro::titulo = titulo;
-    }
-    /**
      * Metodo que te devuelve de categoria
      * @return te devuelve la categoria
      */
     string getCategoria() {
         return categoria;
-    }
-    /**
-     * Metodo que cambia la categoria
-     * @param categoria
-     */
-    void setCategoria(string categoria) {
-        Libro::categoria = categoria;
     }
     /**
      * Metodo que te dice si el libro está disponible
@@ -95,7 +80,11 @@ public:
         string disponibleStr = disponible ? "true" : "false";
         return "[TITULO: " + titulo + "][CATEGORIA: " + categoria + "]";
     };
-
+    /**
+     * Metodo equeals para comparar dos libros
+     * @param libro Libro para comparar
+     * @return true: si coinciden / false: no coinciden
+     */
     bool equals(Libro libro){
         if(Libro::titulo == libro.getTitulo() && Libro::categoria == libro.getCategoria()){
             return true;
