@@ -6,12 +6,31 @@
 #define GRUPO3_ACT1_LIBRO_H
 using namespace std;
 
-class Libro{
+class Libro {
 private:
     string titulo;
     string categoria;
     bool disponible;
 public:
+    /**
+     * Constructor vacio
+     */
+    Libro(){
+        Libro::titulo = "Vacio";
+        Libro::categoria = "Vacio";
+        Libro::disponible = false;
+    }
+    /**
+     * Constructor parametrizado
+     * @param titulo Titulo del libro
+     * @param categoria Categoria del libro
+     * @param disponible Disponibilidad del libro
+     */
+    Libro(string titulo, string categoria, bool disponible) {
+        Libro::titulo = titulo;
+        Libro::categoria = categoria;
+        Libro::disponible = disponible;
+    }
     /**
      * Metodo que te devuelve el titulo
      * @return te devuelve el titulo
@@ -49,12 +68,29 @@ public:
         return disponible;
     }
     /**
-     * Metodo que cambia el estado de disponible
-     * de true a false o viceversa
+     * Metodo establece la disponibilidad del Libro
      * @param disponible
      */
     void setDisponible(bool disponible) {
         Libro::disponible = disponible;
     }
+    /**
+     * Metodo toString
+     * @return toString de Libro
+     */
+    string toString(){
+        string disponibleStr = disponible ? "true" : "false";
+        return "[TITULO: " + titulo + "][CATEGORIA: " + categoria + "][DISPONIBLE: " + disponibleStr + "]";
+    };
+
+    /**
+     * Metodo toString sin el atributo "disponible"
+     * @return toString sin "disponible"
+     */
+    string toStringSinDisponible(){
+        string disponibleStr = disponible ? "true" : "false";
+        return "[TITULO: " + titulo + "][CATEGORIA: " + categoria + "]";
+    };
 };
+
 #endif //GRUPO3_ACT1_LIBRO_H

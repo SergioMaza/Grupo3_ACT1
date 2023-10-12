@@ -21,60 +21,90 @@ private:
 public:
     /**
      * Constructor de usuario sin libroActual
-     * @param nombre
-     * @param apellido
-     * @param dni
+     * @param nombre Nombre del usuario
+     * @param apellido Apellido del usuario
+     * @param dni Dni del usuario
      */
     Usuario(string nombre, string apellido, string dni) {
         Usuario::nombre = nombre;
         Usuario::apellido = apellido;
         Usuario::dni = dni;
+        Usuario::libroActual = Libro();
     }
 
     /**
-     * Contructor de usuario con LibroActual
-     * @param nombre
-     * @param apellido
-     * @param dni
-     * @param libroActual
+     * Contructor de usuario con libroActual
+     * @param nombre Nombre del usuario
+     * @param apellido Apellido del usuario
+     * @param dni Dni del usuario
+     * @param libroActual libroActual del usuario
      */
-
     Usuario(string nombre, string apellido, string dni, Libro libroActual) {
         Usuario::nombre = nombre;
         Usuario::apellido = apellido;
         Usuario::dni = dni;
-        Usuario ::libroActual = libroActual;
+        Usuario::libroActual = libroActual;
+        Usuario::historialLibro.push_back(libroActual); // Agrega el libro al historial
     }
 
     /**
-     *
-     * @return Te devuelve el nombre
+     * Metodo que devuelve el nombre
+     * @return nombre del usuario
      */
-
     const string &getNombre() const {
         return nombre;
     }
 
+    /**
+     * Metodo que devuelve el apellido
+     * @return apellido del usuario
+     */
     const string &getApellido() const {
         return apellido;
     }
 
+    /**
+     * Metodo que devuelve el dni
+     * @return dni del usuario
+     */
     const string &getDni() const {
         return dni;
     }
 
+    /**
+     * Metodo que devuelve el libroActual
+     * @return libroActual del usuario
+     */
     const Libro &getLibroActual() const {
         return libroActual;
     }
 
+    /**
+     * Metodo que establece el libroActual
+     * @param libroActual
+     */
     void setLibroActual(const Libro &libroActual) {
-        Usuario::libroActual = libroActual;
+        Usuario::libroActual.setDisponible(true); // Establece el anterior libroActual a disponible
+        Usuario::libroActual = libroActual; // Guarda en Usuario el nuevo libroActual
+        Usuario::libroActual.setDisponible(false); // Establece el nuevo libroActual a no disponible
+        Usuario::historialLibro.push_back(Usuario::libroActual); // Agrega el libro al historial
     }
-
+    /**
+     * Metodo que imprime el historial de libros
+     */
     void historialLibros() {
+        cout << "--------------------" << endl;
         for (Libro libro: historialLibro) {
-            cout << "- " << libro.getTitulo() << endl;
+            cout << "- " << libro.toStringSinDisponible() << endl;
         }
+        cout << "--------------------" << endl;
+    }
+    /**
+     * Metodo toString
+     * @return toString de Usuario
+     */
+    string toString() {
+        return "[NOMBRE: " + nombre + "][APPELLIDO: " + apellido + "][LIBRO ACTUAL: " + libroActual.getTitulo() + "]";
     }
 };
 
