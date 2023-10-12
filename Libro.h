@@ -4,6 +4,9 @@
 
 #ifndef GRUPO3_ACT1_LIBRO_H
 #define GRUPO3_ACT1_LIBRO_H
+
+#include <list>
+
 using namespace std;
 
 class Libro {
@@ -11,6 +14,7 @@ private:
     string titulo;
     string categoria;
     bool disponible;
+
 public:
     /**
      * Constructor vacio
@@ -35,28 +39,28 @@ public:
      * Metodo que te devuelve el titulo
      * @return te devuelve el titulo
      */
-    const string &getTitulo() const {
+    string getTitulo() {
         return titulo;
     }
     /**
      * Metodo que cambia el titulo
      * @param titulo
      */
-    void setTitulo(const string &titulo) {
+    void setTitulo(string titulo) {
         Libro::titulo = titulo;
     }
     /**
      * Metodo que te devuelve de categoria
      * @return te devuelve la categoria
      */
-    const string &getCategoria() const {
+    string getCategoria() {
         return categoria;
     }
     /**
      * Metodo que cambia la categoria
      * @param categoria
      */
-    void setCategoria(const string &categoria) {
+    void setCategoria(string categoria) {
         Libro::categoria = categoria;
     }
     /**
