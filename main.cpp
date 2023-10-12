@@ -11,19 +11,20 @@ using namespace std;
  * @param libro Libro que se le dara al usuario
  * @param t array de todos los libros
  */
-void darLibro(Usuario &usuario, Libro& libro, Libro t[]) {
-    if (libro.isDisponible()){
+void darLibro(Usuario &usuario, Libro &libro, Libro t[]) {
+    if (libro.isDisponible()) {
         usuario.setLibroActual(libro);
         cout << "Le has dado [" + libro.getTitulo() + "] a " + usuario.getNombre() << endl;
-        for (int i= 0; i<=20; i++){
-            if (t[i].equals(libro)){
-                t[i]= libro;
+        for (int i = 0; i <= 20; i++) {
+            if (t[i].equals(libro)) {
+                t[i] = libro;
             }
         }
     } else {
-        cout << "El libro ["<<libro.getTitulo()<<"] no esta disponible"<<endl;
+        cout << "El libro [" << libro.getTitulo() << "] no esta disponible" << endl;
     }
 }
+
 /**
  * Metodo para retirar un libro de un usuario y actualizar el array de todos los libros
  * @param u usuario
@@ -35,9 +36,9 @@ void retirarLibro(Usuario &u, Libro &l, Libro todoslosLibros[]) {
         cout << "Le has quitado [" << l.getTitulo() << "] a " << u.getNombre() << endl;
         l.setDisponible(true);
         u = Usuario(u.getNombre(), u.getApellido(), u.getDni());
-        for (int i= 0; i<=20; i++){
-            if (todoslosLibros[i].equals(l)){
-                todoslosLibros[i]= l;
+        for (int i = 0; i <= 20; i++) {
+            if (todoslosLibros[i].equals(l)) {
+                todoslosLibros[i] = l;
             }
         }
     } else {
@@ -45,19 +46,21 @@ void retirarLibro(Usuario &u, Libro &l, Libro todoslosLibros[]) {
     }
 
 }
+
 /**
  * Metodo que recorre el array de todos los libros e imprime solamente los que estan disponibles
  * @param todosLosLibros array de todos los libros
  */
 void librosDisp(Libro todosLosLibros[]) {
     cout << "----------------\nLOS LIBROS DISPONIBLES SON:" << endl;
-    for (int i = 0; i<=20;i++) {
+    for (int i = 0; i <= 20; i++) {
         if (todosLosLibros[i].isDisponible()) {
             cout << "- " << todosLosLibros[i].toString() << endl;
         }
     }
     cout << "----------------" << endl;
 }
+
 /**
  * Metodo que comprueba si un usuario tiene el libro que se indica
  * @param u usuario al que se le comprueba si tiene el libro
@@ -65,8 +68,24 @@ void librosDisp(Libro todosLosLibros[]) {
  * @return un boolean, si el usuario tiene el libro sera true, en caso
  * contrario sera false
  */
-bool tieneLibro (Usuario u , Libro l){
+bool tieneLibro(Usuario u, Libro l) {
     return l.equals(u.getLibroActual());
+}
+
+/**
+ * Metodo que busca un libro a partir de su titulo
+ * @return Libro que esta buscando el usuario
+ */
+Libro buscarLibroPorTitulo(Libro todosLosLibros[]){
+    string titulo;
+    cout << "Escribe el titulo del libro:";
+    cin >> titulo;
+    for (int i = 0; i <= 20; i++) {
+       if(todosLosLibros[i].getTitulo() == titulo){
+           return todosLosLibros[i];
+       }
+    }
+    return Libro();
 }
 
 int main() {
@@ -99,20 +118,102 @@ int main() {
             sherlockLupinyYo
     };
 
-
-    Usuario vidhi ("Vidhi", "Sharma", "6");
-    Usuario parejaDeVidhi("Victor","Bellod","69");
-    Usuario mazitabombon ("Sergio", "Maza", "568");
-    Usuario lu ("Lucia", "Doval", "686");
-
-    darLibro(vidhi,cazadoresDeSombras,todosLosLibros);
-
-    darLibro(lu,elJuegoDeEnder,todosLosLibros);
-
-    darLibro(parejaDeVidhi,pokedex,todosLosLibros);
-
-    darLibro(mazitabombon,harryPotter,todosLosLibros);
+    // MENU POR CONSOLA
+    bool seguirMenu1 = true, seguirMenu2 = true; // Variables para controlar los bucles
+    int opcion, usuario;
+    Usuario usuarioSeleccionado; // Usuario que se esta gestionando
+    Libro libroSeleccionado; // Libro que se esta usando (darlo, eliminarlo, etc)
+    Usuario vidhi = Usuario("Vidhi", "Sharma", "1");
+    Usuario lucia = Usuario("Lucia", "Doval", "2");
+    Usuario victor = Usuario("Victor", "Bellod", "3");
+    Usuario sergio = Usuario("Sergio", "Maza", "4");
 
 
+    cout << "\n****************************************************" << endl;
+    cout << "*****     BIENVENIDO AL SISTEMA DE GESTION     *****" << endl;
+    cout << "****************************************************\n" << endl;
+    while (seguirMenu1) {
+        cout << "1. Gestionar a Vidhi\n2. Gestionar a Lucia\n3. Gestionar a Victor"
+                "\n4. Gestionar a Sergio\n5. Ver los libros disponibles\n6. Salir\n";
+        cout << "Elige una opcion:";
+        cin >> usuario;
+        cout << "--------------------" << endl;
+        switch (usuario) {
+            case 1:
+                usuarioSeleccionado = vidhi;
+                break;
+            case 2:
+                usuarioSeleccionado = lucia;
+                break;
+            case 3:
+                usuarioSeleccionado = victor;
+                break;
+            case 4:
+                usuarioSeleccionado = sergio;
+                break;
+            case 5:
+                librosDisp(todosLosLibros);
+                break;
+            case 6:
+                seguirMenu1 = false;
+                break;
+            default:
+                cout << "Has introducido un numero incorrecto" << endl;
+        }
+
+        if (usuario >= 1 && usuario <= 4) { // Solo se ejecuta si ha seleccionado un usuario para gesitonar
+            cout << "Estas gestionando a " << usuarioSeleccionado.toString() << endl;
+
+            while(seguirMenu2){
+                cout << "--------------------" << endl;
+                cout << "1. Ver el historial de " << usuarioSeleccionado.getNombre() <<
+                     "\n2. Dar un libro a "<< usuarioSeleccionado.getNombre() <<
+                     "\n3. Retirar el libro a "<< usuarioSeleccionado.getNombre() <<
+                     "\n4. Ver si "<< usuarioSeleccionado.getNombre() <<" tiene un libro\n5. Atras" << endl;
+                cout << "Escribe el numero de la accion que quieras realizar:";
+                cin >> opcion;
+                cout << "--------------------" << endl;
+
+                switch (opcion) {
+                    case 1:
+                        // Opción 1: Ver el historial de un Usuario
+                        cout << usuarioSeleccionado.historialLibros() << endl;
+                        break;
+
+                    case 2:
+                        // Opción 2: Dar un libro a un Usuario
+                        libroSeleccionado = buscarLibroPorTitulo(todosLosLibros);
+                        darLibro(usuarioSeleccionado, libroSeleccionado, todosLosLibros);
+                        break;
+
+                    case 3:
+                        // Opción 3: Retirar el libro a un Usuario
+                        libroSeleccionado = buscarLibroPorTitulo(todosLosLibros);
+                        retirarLibro(usuarioSeleccionado, libroSeleccionado, todosLosLibros);
+                        break;
+
+                    case 4:
+                        // Opción 4: Ver si un usuario tiene un libro
+                        libroSeleccionado = buscarLibroPorTitulo(todosLosLibros);
+                        if(tieneLibro(usuarioSeleccionado, libroSeleccionado)){
+                            cout << usuarioSeleccionado.getNombre() << " si tiene " << libroSeleccionado.getTitulo() + "\n";
+                        }else{
+                            cout << usuarioSeleccionado.getNombre() << " no tiene " << libroSeleccionado.getTitulo() + "\n";
+                        }
+                        break;
+
+                    case 5:
+                        // Opción 5: Ir al menu1
+                        seguirMenu2 = false;
+                        break;
+
+                    default:
+                        cout << "Opción no válida. Por favor, elige una opción válida del 1 al 8." << endl;
+                        break;
+                }
+            }
+
+        }
+    }
     return 0;
 }
