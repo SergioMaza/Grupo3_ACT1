@@ -16,8 +16,8 @@ public:
      * Constructor vacio
      */
     Libro(){
-        Libro::titulo = "";
-        Libro::categoria = "";
+        Libro::titulo = "Vacio";
+        Libro::categoria = "Vacio";
         Libro::disponible = false;
     }
     /**
