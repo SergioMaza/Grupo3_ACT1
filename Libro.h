@@ -74,6 +74,23 @@ public:
     void setDisponible(bool disponible) {
         Libro::disponible = disponible;
     }
+    /**
+     * Metodo toString
+     * @return toString de Libro
+     */
+    string toString(){
+        string disponibleStr = disponible ? "true" : "false";
+        return "[TITULO: " + titulo + "][CATEGORIA: " + categoria + "][DISPONIBLE: " + disponibleStr + "]";
+    };
+
+    /**
+     * Metodo toString sin el atributo "disponible"
+     * @return toString sin "disponible"
+     */
+    string toStringSinDisponible(){
+        string disponibleStr = disponible ? "true" : "false";
+        return "[TITULO: " + titulo + "][CATEGORIA: " + categoria + "]";
+    };
 };
 
 #endif //GRUPO3_ACT1_LIBRO_H
